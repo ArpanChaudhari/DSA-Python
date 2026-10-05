@@ -1,4 +1,5 @@
-def scoreOfParentheses(s: str) -> int:
+# Approach 1: Time Complexity: O(n), Space Complexity: O(n) 
+def scoreOfParentheses1(s: str) -> int:
     n = len(s)
     stack = [0]  # first item in stack for final result
 
@@ -18,8 +19,26 @@ def scoreOfParentheses(s: str) -> int:
 
     return stack[0]
 
+# Approach 2: Time Complexity: O(n), Space Complexity: O(1)
+def scoreOfParentheses2(s: str) -> int:
+    depth = 0
+    result = 0
+
+    for i in range(len(s)):
+
+        if s[i] == "(":
+            depth += 1
+        else:
+            depth -= 1
+                
+            if s[i-1] == "(":
+                result += 1 << (depth)
+    
+    return result
+
 s = "(()(()))"
-print(scoreOfParentheses(s))  # Output: 6
+# print(scoreOfParentheses1(s)) 
+print(scoreOfParentheses2(s))  # Output: 6
 
 """
 stack = [0]
